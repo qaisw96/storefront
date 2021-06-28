@@ -1,12 +1,16 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Category from './categories'
 import Products from './products'
+import Header from './header'
+import Footer from './footer'
 
 function App() {
     return (
         <>
-            <h1>Store Front</h1>
+            <Header />
             <Category />
             <Products />
+            <Footer />
         </>
     )
 }
