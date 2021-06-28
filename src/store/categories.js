@@ -10,11 +10,11 @@ const initialCategories = {
 
 
  const catagories = (state = initialCategories, action) => {
-    let { type, payload } = action;
-    switch(type) {
-        case 'ACTIVE' :
-            let activeCategory = state.categories.find((category) => category.name === payload)
-            console.log('active C', activeCategory);
+     let { type, payload } = action;
+     console.log('catagories Reducer', payload);
+     switch(type) {
+         case 'ACTIVE' :
+             let activeCategory = state.categories.find((category) => category.name === payload)
 
             return {categories: state.categories, activeCategory}
         default: 
@@ -25,7 +25,7 @@ const initialCategories = {
 export default catagories
 
 export const seCategory = (name) => {
-    console.log(name);
+    console.log('seCategory', name);
     console.log("inside our increment function for the action");
     return {
         type: 'ACTIVE',

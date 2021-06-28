@@ -1,0 +1,21 @@
+section {
+    height: 100vh;
+
+}
+
+.products {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 100px;
+    max-height: 100vh;
+}
+
+.name-price {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price {
+    font-size: medium;
+}

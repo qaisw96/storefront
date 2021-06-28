@@ -1,41 +1,41 @@
 
 let initialState = {
     products:[
-        {name:'KEYBOARD' , 
+        {name:'DELL' , 
         price: '178.6$', 
-        image: 'https://source.unsplash.com/random?Keyboard', 
+        image: 'https://i.dell.com/is/image/DellContent//content/dam/global-asset-library/Products/Notebooks/Inspiron/15_5508_non-touch/in5508nt_cnb_00055lf110_gr.psd?fmt=pjpg&pscan=auto&scl=1&wid=3475&hei=2090&qlt=85,0&resMode=sharp2&op_usm=1.75,0.3,2,0&size=3475,2090', 
         inStock:200 ,
         category:'lab-top'
         },
-        {name:'Tv' , 
+        {name:'HP' , 
         price: '750$', 
-        image: 'https://images.samsung.com/is/image/samsung/levant-uhd-tu8500-ua55tu8500uxtw-frontblack-229855928?$684_547_PNG$', 
+        image: 'https://www.techadvisor.com/cmsdata/reviews/3803826/hp_pavilion_14_laptop02.jpg', 
         inStock:300 ,
-        category:'lap-top'
+        category:'lab-top'
         },
-        {name:'USB' , 
+        {name:'LENOVO' , 
         price: '13.5$', 
-        image: 'https://cdn.shopify.com/s/files/1/0066/3801/0432/products/uni-usb-c-usb-c-8-in-1-hub-15384714739775_2_2048x2048.jpg?v=1624011415', 
+        image: 'https://www.windowscentral.com/sites/wpcentral.com/files/styles/w1600h900crop_wm_brb/public/field/image/2021/01/lenovo-thinkpad-x1-yoga-gen6-6.jpg', 
         inStock:260 ,
         category:'lab-top'
         },
-        {name:'Calzones' , 
+        {name:'APPLE' , 
         price: '20.3$', 
-        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/3-Tasten-Maus_Microsoft.jpg/220px-3-Tasten-Maus_Microsoft.jpg', 
+        image: 'https://www.apple.com/newsroom/images/product/iphone/standard/apple_iphone-12-spring21_lp_us_04202021.jpg.og.jpg?202106011004', 
         inStock:500 ,
         category:'phone'
         },
-        {name:'Mouse' , 
+        {name:'SAMSUNG' , 
         price: '30.3$', 
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvCV1nEn29DnjI4Yvdm1hca_eRNuW_OQmoXA&usqp=CAU', 
+        image: 'https://images.samsung.com/is/image/samsung/assets/in/smartphones/galaxy-z-fold2/buy/mo.jpg', 
         inStock:163 ,
         category:'phone'
         },
-        {name:'Apple' , 
+        {name:'HUAWEI' , 
         price: '6.2$', 
-        image: 'http://blogs-images.forbes.com/bethhoffman/files/2012/04/Apple.jpg', 
+        image: 'https://consumer.huawei.com/content/dam/huawei-cbg-site/en/mkt/homepage/sub-banner/huawei-ai-life/ai-life-mob.jpg', 
         inStock:300 ,
-        category:'lab-top'
+        category:'phone'
         }
     ],
     count:0
@@ -43,7 +43,7 @@ let initialState = {
 
 const products =(state = initialState, action ) => {
     let {type, payload} = action
-    
+    console.log('products reducer')
     switch(type) {
         case 'ACTION' :
             let activeProducts =  state.products.filter(product => product.category === payload )
@@ -58,7 +58,7 @@ const products =(state = initialState, action ) => {
 export default products
 
 export const setProducts = (name) => {
-    console.log(name);
+    console.log( 'from setProducts' ,name);
     return {
         type: 'ACTION',
         payload: name
