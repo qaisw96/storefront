@@ -1,6 +1,7 @@
 import '../css/products.scss'
 import { connect } from "react-redux";
 import { setProducts } from "../store/products";
+import { incrementStock } from "../store/products";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -27,9 +28,8 @@ const useStyles = makeStyles({
 
 const Products = (props) => {
     const classes = useStyles();
-
     console.log(props.products);
-    console.log(props.products.activeProducts);
+
     let results= props.products.activeProducts
     if(!props.products.activeProducts) results = []
 
@@ -38,7 +38,7 @@ const Products = (props) => {
 
         <div className="products">
             {results.map((product, inx) => 
-            <Card className={classes.root}>
+            <Card key={inx} className={classes.root}>
                 <CardActionArea>
         
                     <CardMedia 
@@ -64,11 +64,11 @@ const Products = (props) => {
                 </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary">
-                        View
+                    <Button onClick={() =>props.incrementStock(product.name)} size="small" color="primary">
+                        Add To Cart
                     </Button>
                     <Button size="small" color="primary">
-                        Buy
+                        View Details
                     </Button>
                 </CardActions>
             </Card>
@@ -85,6 +85,6 @@ const mapStateToProps = (state) => ({
     category: state.catagories
 })
 
-const mapDispatchToProps = {setProducts};
+const mapDispatchToProps = {setProducts, incrementStock};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
