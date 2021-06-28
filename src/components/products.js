@@ -1,6 +1,6 @@
 import '../css/products.scss'
-import { connect } from "react-redux";
-import { setProducts } from "../store/products";
+import { incrementStock, addToCard } from "../store/actions";
+import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -26,19 +26,24 @@ const useStyles = makeStyles({
 
 
 const Products = (props) => {
+    const dispatch = useDispatch()
+
+    const state = useSelector(state => {
+        return {
+            products: state.products,
+        }
+    })
+    console.log(state.products)
     const classes = useStyles();
 
-    console.log(props.products);
-    console.log(props.products.activeProducts);
-    let results= props.products.activeProducts
-    if(!props.products.activeProducts) results = []
+    let results= state.products.activeProducts
 
     return (
         <section>
 
         <div className="products">
             {results.map((product, inx) => 
-            <Card className={classes.root}>
+            <Card key={inx} className={classes.root}>
                 <CardActionArea>
         
                     <CardMedia 
@@ -64,11 +69,15 @@ const Products = (props) => {
                 </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button size="small" color="primary">
-                        View
+                    <Button onClick={() =>{ 
+                        dispatch(incrementStock(product.name))
+                        dispatch(addToCard(product.name))
+                    }}
+                     size="small" color="primary">
+                        Add To Cart
                     </Button>
                     <Button size="small" color="primary">
-                        Buy
+                        View Details
                     </Button>
                 </CardActions>
             </Card>
@@ -80,11 +89,6 @@ const Products = (props) => {
     )
 }
 
-const mapStateToProps = (state) => ({
-    products: state.products,
-    category: state.catagories
-})
 
-const mapDispatchToProps = {setProducts};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default Products;

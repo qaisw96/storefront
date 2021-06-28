@@ -24,14 +24,5 @@ const initialCategories = {
 
 export default catagories
 
-export const seCategory = (name) => {
-    console.log('seCategory', name);
-    console.log("inside our increment function for the action");
-    return {
-        type: 'ACTIVE',
-        payload: name
-    }
-}
-
 
 
