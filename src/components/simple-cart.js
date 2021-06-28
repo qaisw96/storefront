@@ -1,9 +1,10 @@
 import React from 'react';
 import '../css/simple-cart.scss'
+import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+// import ListItem from '@material-ui/core/ListItem';
+// import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: 200,
   },
   listSection: {
-    backgroundColor: 'inherit',
+    backgroundColor: 'rgb(253, 253, 216)',
   },
   ul: {
     backgroundColor: 'inherit',
@@ -26,21 +27,29 @@ const useStyles = makeStyles((theme) => ({
 
 
 const SimpleCart = () => {
+    const state = useSelector(state => {
+      return {
+        cart : state.cart
+      }
+    })
+    console.log(state);
+    let displayList = state.cart.display ? state.cart.display : []
     const classes = useStyles();
     return (
         <>
           <div className="list">
 
             <List className={classes.root} subheader={<li />}>
-                {[0, 1, 2, 3, 4].map((sectionId) => (
-                    <li key={`section-${sectionId}`} className={classes.listSection}>
-                    <ul className={classes.ul}>
-                        <ListSubheader>{`I'm sticky ${sectionId}`}</ListSubheader>
-                        {[0, 1, 2].map((item) => (
+                {displayList.map((item) => (
+                    <li key={`section-${item}`} className={classes.listSection}>
+                    <ul className={`${classes.ul} item` }>
+                        <ListSubheader>{ item}</ListSubheader>
+                        <button>X</button>
+                        {/* {[0, 1, 2].map((item) => (
                         <ListItem key={`item-${sectionId}-${item}`}>
                             <ListItemText primary={`Item ${item}`} />
                         </ListItem>
-                        ))}
+                        ))} */}
                     </ul>
                     </li>
                 ))}

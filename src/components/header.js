@@ -18,11 +18,11 @@ const StyledBadge = withStyles((theme) => ({
 const Header = () => {
     const state = useSelector(state => {
         return {
-            newCount: state.products.count
+            cart: state.cart.count
         }
     })
-
-    console.log(state.newCount);
+    const numberOfItems = state.cart
+    console.log(state.cart);
 
     return (
 
@@ -43,7 +43,7 @@ const Header = () => {
                 </NavDropdown>
             </Nav>
             <IconButton className="cart" aria-label="cart">
-                <StyledBadge badgeContent={state.newCount} color="secondary">
+                <StyledBadge  badgeContent={numberOfItems} color="secondary">
                     <ShoppingCartIcon />
                 </StyledBadge>
             </IconButton>

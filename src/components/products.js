@@ -1,7 +1,6 @@
 import '../css/products.scss'
-import { connect } from "react-redux";
-import { setProducts } from "../store/products";
-import { incrementStock } from "../store/products";
+import { incrementStock, addToCard } from "../store/actions";
+import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -27,11 +26,17 @@ const useStyles = makeStyles({
 
 
 const Products = (props) => {
-    const classes = useStyles();
-    console.log(props.products);
+    const dispatch = useDispatch()
 
-    let results= props.products.activeProducts
-    if(!props.products.activeProducts) results = []
+    const state = useSelector(state => {
+        return {
+            products: state.products,
+        }
+    })
+    console.log(state.products)
+    const classes = useStyles();
+
+    let results= state.products.activeProducts
 
     return (
         <section>
@@ -64,7 +69,11 @@ const Products = (props) => {
                 </CardContent>
                 </CardActionArea>
                 <CardActions>
-                    <Button onClick={() =>props.incrementStock(product.name)} size="small" color="primary">
+                    <Button onClick={() =>{ 
+                        dispatch(incrementStock(product.name))
+                        dispatch(addToCard(product.name))
+                    }}
+                     size="small" color="primary">
                         Add To Cart
                     </Button>
                     <Button size="small" color="primary">
@@ -80,11 +89,6 @@ const Products = (props) => {
     )
 }
 
-const mapStateToProps = (state) => ({
-    products: state.products,
-    category: state.catagories
-})
 
-const mapDispatchToProps = {setProducts, incrementStock};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default Products;

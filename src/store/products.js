@@ -38,7 +38,7 @@ let initialState = {
         category:'phone'
         }
     ],
-    count:0
+    activeProducts: []
 }
 
 const products =(state = initialState, action ) => {
@@ -48,32 +48,15 @@ const products =(state = initialState, action ) => {
         case 'ACTION' :
             let activeProducts =  state.products.filter(product => product.category === payload )
             console.log('active P', activeProducts);
-            return { products: state.products , activeProducts, count: state.count };
+            return { products: state.products , activeProducts };
         case 'STOCK' :
-            // console.log('state', state);
             console.log('state', initialState);
             let newState = state.products.filter(product => product.name === payload ? product.inStock = product.inStock-1 : product)
-            let newCount =  state.count+1
-            return {products: state.products, count: newCount, newState}
+            return {products: state.products, newState, activeProducts: state.activeProducts}
         default : 
             return state
-
     }
 }
 
 export default products
 
-export const setProducts = (name) => {
-    return {
-        type: 'ACTION',
-        payload: name
-    }
-}
-
-export const incrementStock = (name) => {
-    console.log( 'from incrementStock' ,name);
-    return {
-        type: 'STOCK',
-        payload: name
-    }
-}

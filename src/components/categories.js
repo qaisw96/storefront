@@ -1,7 +1,7 @@
 import '../css/category.scss'
 import {useSelector, useDispatch} from 'react-redux';
-import { seCategory } from "../store/categories";
-import { setProducts } from "../store/products";
+// import { seCategory } from "../store/categories";
+import { setProducts } from "../store/actions";
 import Button from '@material-ui/core/Button'
 
 
