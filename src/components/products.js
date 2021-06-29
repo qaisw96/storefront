@@ -1,6 +1,6 @@
 import '../css/products.scss'
 import {useEffect} from 'react';
-import { incrementStock, addToCard, getAllProducts } from "../store/actions";
+import { incrementStock, addToCard, getAllProducts, getAllItems } from "../store/actions";
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -30,6 +30,7 @@ const Products = (props) => {
 
     useEffect(() => {
        dispatch(getAllProducts())
+       dispatch(getAllItems())
        
     }, [] )
 
