@@ -1,5 +1,6 @@
 import '../css/products.scss'
-import { incrementStock, addToCard } from "../store/actions";
+import {useEffect} from 'react';
+import { incrementStock, addToCard, getAllProducts, getAllItems } from "../store/actions";
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -26,6 +27,13 @@ const useStyles = makeStyles({
 
 
 const Products = (props) => {
+
+    useEffect(() => {
+       dispatch(getAllProducts())
+       dispatch(getAllItems())
+       
+    }, [] )
+
     const dispatch = useDispatch()
 
     const state = useSelector(state => {
@@ -48,7 +56,7 @@ const Products = (props) => {
         
                     <CardMedia 
                         className={classes.media}
-                        image={product.image}
+                        image={product.Image}
                         title="Contemplative Reptile"
                     />
                     <CardContent>
@@ -58,7 +66,7 @@ const Products = (props) => {
                             {product.name}
                         </span> 
                         <span className="price">
-                            {product.price}
+                            {`${product.price} $`}
                         </span> 
                     </div>
                     </Typography>

@@ -1,18 +1,30 @@
 .list {
     width: 200px;
     height: 150px;
-    position: absolute;
+    // position: absolute ;
     right: 15px;
     background-color: rgb(253, 253, 216);
+    border: 1.2px chocolate dashed;
+    position:fixed;
+    top:100px;
+    // width:100%;
+    z-index:100;
+    opacity: .9;
+    
+
 }
 
 .item {
     display: flex;
     justify-content: space-between;
 
+    .ListSubheader {
+        border-left: crimson 2px solid;
+    }
+
     button {
         height: 2px;
-        background-color: blanchedalmond;
+        color: rgb(221, 10, 73);
         border: none;
     }
 }

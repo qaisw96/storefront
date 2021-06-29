@@ -1,5 +1,5 @@
 import '../css/footer.scss'
-import {Navbar,Container,  NavDropdown, Nav} from 'react-bootstrap'
+import {Navbar} from 'react-bootstrap'
 import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import LocalPhoneIcon from '@material-ui/icons/LocalPhone';

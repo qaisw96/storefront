@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/simple-cart.scss'
 import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
+import { deleteItemFromCart } from '../store/actions';
 import List from '@material-ui/core/List';
 // import ListItem from '@material-ui/core/ListItem';
 // import ListItemText from '@material-ui/core/ListItemText';
@@ -27,13 +28,15 @@ const useStyles = makeStyles((theme) => ({
 
 
 const SimpleCart = () => {
+    const dispatch = useDispatch()
     const state = useSelector(state => {
       return {
         cart : state.cart
       }
     })
-    console.log(state);
     let displayList = state.cart.display ? state.cart.display : []
+    console.log(displayList);
+
     const classes = useStyles();
     return (
         <>
@@ -41,10 +44,10 @@ const SimpleCart = () => {
 
             <List className={classes.root} subheader={<li />}>
                 {displayList.map((item) => (
-                    <li key={`section-${item}`} className={classes.listSection}>
+                    <li key={`section-${item._id}`} className={classes.listSection}>
                     <ul className={`${classes.ul} item` }>
-                        <ListSubheader>{ item}</ListSubheader>
-                        <button>X</button>
+                        <ListSubheader className="ListSubheader">{ item.name}</ListSubheader>
+                        <button onClick={() => dispatch(deleteItemFromCart(item._id))}>x</button>
                         {/* {[0, 1, 2].map((item) => (
                         <ListItem key={`item-${sectionId}-${item}`}>
                             <ListItemText primary={`Item ${item}`} />
