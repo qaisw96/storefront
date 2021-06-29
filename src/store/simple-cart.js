@@ -11,7 +11,10 @@ const cart = (state=initialState, action) => {
     switch(type) {
         case 'ADDTOCART' :
             const newList = [...state.cart, payload ]
-            return {cart: newList , display: uniqueArr(newList), count: state.count + 1, show: !state.show}
+            console.log(payload);
+            if(!state.cart.includes(payload))  state.count+=1
+            console.log(state.count);
+            return {cart: newList , display: uniqueArr(newList), count: state.count, show: !state.show}
         default : 
             return state
     }
