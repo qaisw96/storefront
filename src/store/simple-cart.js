@@ -17,7 +17,7 @@ const cart = (state=initialState, action) => {
             return {cart: newList , display: uniqueArr(newList), count: uniqueArr(newList).length, show: !state.show}
         case 'ADDTOCART' :
             const list = [...state.cart, payload ]
-            return {cart: list,  display: uniqueArr(list)}
+            return {cart: list,  display: uniqueArr(list), count: uniqueArr(list).length}
         case 'DELETEFROMCART' :
             console.log('DELETEFROMCART', state.cart);
             const updatedList = state.cart.filter(item => item._id !== payload)
